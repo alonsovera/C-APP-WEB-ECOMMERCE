@@ -1,0 +1,89 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\veraa\\Downloads\\tfmult\\Multiplataforma\\Multiplataforma\\EcoPets\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{47135582-7280-4B29-BF45-5326ACF7FC7B}|EcoPets.API\\EcoPets.API.csproj|c:\\users\\veraa\\downloads\\tfmult\\multiplataforma\\multiplataforma\\ecopets\\ecopets.api\\controllers\\categoriacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{47135582-7280-4B29-BF45-5326ACF7FC7B}|EcoPets.API\\EcoPets.API.csproj|solutionrelative:ecopets.api\\controllers\\categoriacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47135582-7280-4B29-BF45-5326ACF7FC7B}|EcoPets.API\\EcoPets.API.csproj|c:\\users\\veraa\\downloads\\tfmult\\multiplataforma\\multiplataforma\\ecopets\\ecopets.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{47135582-7280-4B29-BF45-5326ACF7FC7B}|EcoPets.API\\EcoPets.API.csproj|solutionrelative:ecopets.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FAAA1AD-D281-4088-97C2-E1D39F150ACB}|EcoPets.WebAssembly\\EcoPets.WebAssembly.csproj|c:\\users\\veraa\\downloads\\tfmult\\multiplataforma\\multiplataforma\\ecopets\\ecopets.webassembly\\pages\\autorizacion\\registro.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7FAAA1AD-D281-4088-97C2-E1D39F150ACB}|EcoPets.WebAssembly\\EcoPets.WebAssembly.csproj|solutionrelative:ecopets.webassembly\\pages\\autorizacion\\registro.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FAAA1AD-D281-4088-97C2-E1D39F150ACB}|EcoPets.WebAssembly\\EcoPets.WebAssembly.csproj|c:\\users\\veraa\\downloads\\tfmult\\multiplataforma\\multiplataforma\\ecopets\\ecopets.webassembly\\servicios\\implementacion\\usuarioservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FAAA1AD-D281-4088-97C2-E1D39F150ACB}|EcoPets.WebAssembly\\EcoPets.WebAssembly.csproj|solutionrelative:ecopets.webassembly\\servicios\\implementacion\\usuarioservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Registro.razor",
+              "DocumentMoniker": "C:\\Users\\veraa\\Downloads\\tfmult\\Multiplataforma\\Multiplataforma\\EcoPets\\EcoPets.WebAssembly\\Pages\\Autorizacion\\Registro.razor",
+              "RelativeDocumentMoniker": "EcoPets.WebAssembly\\Pages\\Autorizacion\\Registro.razor",
+              "ToolTip": "C:\\Users\\veraa\\Downloads\\tfmult\\Multiplataforma\\Multiplataforma\\EcoPets\\EcoPets.WebAssembly\\Pages\\Autorizacion\\Registro.razor",
+              "RelativeToolTip": "EcoPets.WebAssembly\\Pages\\Autorizacion\\Registro.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T15:53:55.041Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CategoriaController.cs",
+              "DocumentMoniker": "C:\\Users\\veraa\\Downloads\\tfmult\\Multiplataforma\\Multiplataforma\\EcoPets\\EcoPets.API\\Controllers\\CategoriaController.cs",
+              "RelativeDocumentMoniker": "EcoPets.API\\Controllers\\CategoriaController.cs",
+              "ToolTip": "C:\\Users\\veraa\\Downloads\\tfmult\\Multiplataforma\\Multiplataforma\\EcoPets\\EcoPets.API\\Controllers\\CategoriaController.cs",
+              "RelativeToolTip": "EcoPets.API\\Controllers\\CategoriaController.cs",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T13:26:52.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\veraa\\Downloads\\tfmult\\Multiplataforma\\Multiplataforma\\EcoPets\\EcoPets.API\\appsettings.json",
+              "RelativeDocumentMoniker": "EcoPets.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\veraa\\Downloads\\tfmult\\Multiplataforma\\Multiplataforma\\EcoPets\\EcoPets.API\\appsettings.json",
+              "RelativeToolTip": "EcoPets.API\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-28T12:48:00.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UsuarioServicio.cs",
+              "DocumentMoniker": "C:\\Users\\veraa\\Downloads\\tfmult\\Multiplataforma\\Multiplataforma\\EcoPets\\EcoPets.WebAssembly\\Servicios\\Implementacion\\UsuarioServicio.cs",
+              "RelativeDocumentMoniker": "EcoPets.WebAssembly\\Servicios\\Implementacion\\UsuarioServicio.cs",
+              "ToolTip": "C:\\Users\\veraa\\Downloads\\tfmult\\Multiplataforma\\Multiplataforma\\EcoPets\\EcoPets.WebAssembly\\Servicios\\Implementacion\\UsuarioServicio.cs",
+              "RelativeToolTip": "EcoPets.WebAssembly\\Servicios\\Implementacion\\UsuarioServicio.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAASwBgAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T16:18:30.26Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

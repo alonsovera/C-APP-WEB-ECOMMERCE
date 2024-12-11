@@ -1,0 +1,72 @@
+﻿@page "/login"
+@layout LoginLayout
+
+@using EcoPets.WebAssembly.Extensiones
+@using Microsoft.AspNetCore.Components.Authorization
+@inject IUsuarioServicio _usuarioServicio
+@inject NavigationManager _navServicio
+@inject IToastService toastService
+@inject AuthenticationStateProvider autenticacionProvider
+
+<div class="login-container animated slideInDown">
+    <div class="view-header text-center">
+        <img src="images/ecopets.png" alt="EcoPets" width="30%">
+        <h3>Login</h3>
+        <small>Please enter your credentials to login.</small>
+    </div>
+    <div class="panel panel-filled mt-3">
+        <div class="panel-body">
+            <EditForm Model="modelo" OnValidSubmit="Iniciar">
+                <DataAnnotationsValidator />
+                <div class="form-group">
+                    <label for="inputEmail" class="form-label">Email / Usuario</label>
+                    <input class="form-control" id="inputEmail" type="email" placeholder="example@gmail.com" @bind-value="modelo.Correo" autocomplete="off" required />
+                    <span class="help-block small">Ingresa con tu email</span>
+                    <ValidationMessage For="@(() => modelo.Correo)" />
+                </div>
+                <div class="form-group mt-3">
+                    <label for="inputPassword" class="form-label">Contraseña</label>
+                    <input class="form-control" id="inputPassword" type="password" placeholder="******" @bind-value="modelo.Clave" autocomplete="off" required />
+                    <span class="help-block small">Ingresa tu contraseña</span>
+                    <ValidationMessage For="@(() => modelo.Clave)" />
+                </div>
+                <div class="d-grid gap-1 mt-4 mb-0 text-center">
+                    <button class="btn btn-primary" type="submit">Login</button>
+                    <a class="btn btn-default mt-2" href="/registrarse">Crear Cuenta</a>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+    <div class="back-link mt-3 text-center">
+        <a href="/" class="btn btn-accent">Regresar al inicio</a>
+    </div>
+</div>
+
+@code {
+    private LoginDTO modelo = new LoginDTO();
+
+    private async Task Iniciar()
+    {
+        var response = await _usuarioServicio.Autorizacion(modelo);
+        if (response.EsCorrecto)
+        {
+            SesionDTO sesion = (SesionDTO)response.Resultado!;
+
+            var autenticacionExt = (AutenticacionExtension)autenticacionProvider;
+            await autenticacionExt.ActualizarEstadoAutenticacion(sesion);
+
+            if (sesion.Rol.ToLower() == "cliente")
+            {
+                _navServicio.NavigateTo("/catalogo");
+            }
+            else
+            {
+                _navServicio.NavigateTo("/dashboard");
+            }
+        }
+        else
+        {
+            toastService.ShowWarning(response.Mensaje!);
+        }
+    }
+}

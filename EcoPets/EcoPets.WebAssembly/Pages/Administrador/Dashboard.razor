@@ -1,0 +1,65 @@
+﻿@page "/dashboard"
+
+@inject IDashboardServicio dashboardServicio
+@attribute [Authorize(Roles = "Administrador")]
+
+<div class="container mt-4">
+    <div class="row justify-content-center text-center">
+        <!-- Total Ingresos -->
+        <div class="col-12 col-sm-6 col-md-3 mb-4">
+            <div class="card border-primary shadow h-100">
+                <div class="card-body">
+                    <i class="oi oi-dollar text-primary mb-3" style="font-size:50px"></i>
+                    <h6 class="text-primary text-uppercase">Total Ingresos</h6>
+                    <h5 class="fw-bold text-muted">S/. @dashboard.TotalIngresos</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Ventas -->
+        <div class="col-12 col-sm-6 col-md-3 mb-4">
+            <div class="card border-success shadow h-100">
+                <div class="card-body">
+                    <i class="oi oi-tags text-success mb-3" style="font-size:50px"></i>
+                    <h6 class="text-success text-uppercase">Total Ventas</h6>
+                    <h5 class="fw-bold text-muted">@dashboard.TotalVentas</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Clientes -->
+        <div class="col-12 col-sm-6 col-md-3 mb-4">
+            <div class="card border-warning shadow h-100">
+                <div class="card-body">
+                    <i class="oi oi-people text-warning mb-3" style="font-size:50px"></i>
+                    <h6 class="text-warning text-uppercase">Total Clientes</h6>
+                    <h5 class="fw-bold text-muted">@dashboard.TotalCliente</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Productos -->
+        <div class="col-12 col-sm-6 col-md-3 mb-4">
+            <div class="card border-info shadow h-100">
+                <div class="card-body">
+                    <i class="oi oi-box text-info mb-3" style="font-size:50px"></i>
+                    <h6 class="text-info text-uppercase">Total Productos</h6>
+                    <h5 class="fw-bold text-muted">@dashboard.TotalProductos</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private DashboardDTO dashboard = new DashboardDTO();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await dashboardServicio.Resumen();
+        if (response.EsCorrecto)
+        {
+            dashboard = (DashboardDTO)response.Resultado!;
+        }
+    }
+}

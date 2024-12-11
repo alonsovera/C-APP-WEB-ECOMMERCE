@@ -1,0 +1,142 @@
+﻿@inject ICarritoServicio carritoServicio
+@implements IDisposable 
+@inject SweetAlertService swal
+@inject NavigationManager _navigationManager
+@using EcoPets.WebAssembly.Extensiones
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@inject AuthenticationStateProvider autenticacionProvider
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+    <div class="container text-light">
+        <div class="w-100 d-flex justify-content-between">
+            <div>
+                <i class="fa fa-envelope mx-2"></i>
+                <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:ecopets@gmail.com">ecopets@gmail.com</a>
+                <i class="fa fa-phone mx-2"></i>
+                <a class="navbar-sm-brand text-light text-decoration-none" href="tel:912928844">912 928 844</a>
+            </div>
+            <div>
+                <a class="text-light" href="https://www.facebook.com/familiaecopets/" target="_blank" rel="sponsored">
+                    <i class="fab fa-facebook-f fa-sm fa-fw me-2"></i>
+                </a>
+                <a class="text-light" href="https://www.instagram.com/ecopetscosmetica/" target="_blank">
+                    <i class="fab fa-instagram fa-sm fa-fw me-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light shadow">
+    <div class="container d-flex justify-content-between align-items-center">
+        <!-- Logo -->
+        <a class="navbar-brand text-success logo h1 align-self-center" href="/">
+            <h1><span style="color: #DAA520;">Eco</span><span style="color: gray;">Pets</span></h1>
+        </a>
+
+        <!-- Toggler for Small Screens -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navigation Menu -->
+        <div class="@NavMenuCssClass align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <AuthorizeView Roles="Administrador">
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="dashboard">Dashboard</NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="usuarios">Usuarios</NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="categorias">Categorías</NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="productos">Productos</NavLink>
+                    </li>
+                </AuthorizeView>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="catalogo">Tienda</NavLink>
+                </li>
+            </ul>
+
+            <!-- Cart Icon -->
+            <!-- Cart Icon -->
+            <a class="nav-icon position-relative text-decoration-none me-4" href="/cart">
+                <!-- me-4 agrega espacio a la derecha -->
+                <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                <span id="lblCantidadCarrito" class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                    @MostrarCantidadCarrito()
+                </span>
+            </a>
+
+            <!-- User Authentication -->
+            <AuthorizeView>
+                <Authorized>
+                    <span class="navbar-text me-4">
+                        <!-- me-4 agrega espacio a la derecha -->
+                        @context.User.Claims.Where(c => c.Type == ClaimTypes.Email).Select(c => c.Value).SingleOrDefault()
+                    </span>
+                    <button class="btn btn-outline-dark ms-auto ms-md-0 me-4" type="button" @onclick="CerrarSesion">Salir</button> <!-- me-4 agrega espacio -->
+                </Authorized>
+                <NotAuthorized>
+                    <!-- Ícono y texto de login -->
+                    <a class="nav-icon position-relative text-decoration-none" href="/login">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark" style="transform: translate(-50%, -50%) translateY(-10px);">Login</span>
+                    </a>
+                </NotAuthorized>
+            </AuthorizeView>
+
+        </div>
+    </div>
+</nav>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+
+    protected override void OnInitialized()
+    {
+        carritoServicio.MostrarItems += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        carritoServicio.MostrarItems -= StateHasChanged;
+    }
+
+    private int MostrarCantidadCarrito()
+    {
+        return carritoServicio.CantidadProductos();
+    }
+
+    private async Task CerrarSesion()
+    {
+        SweetAlertResult result = await swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Desea salir?",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = true,
+                ConfirmButtonText = "Sí",
+                CancelButtonText = "No",
+            });
+
+        if (result.IsConfirmed)
+        {
+            var autenticacionExt = (AutenticacionExtension)autenticacionProvider;
+            await autenticacionExt.ActualizarEstadoAutenticacion(null);
+            _navigationManager.NavigateTo("/", true);
+        }
+
+    }
+}

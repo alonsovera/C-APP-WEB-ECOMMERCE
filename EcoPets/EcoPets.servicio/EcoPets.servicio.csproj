@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EcoPets.DTO\EcoPets.DTO.csproj" />
+    <ProjectReference Include="..\EcoPets.model\EcoPets.model.csproj" />
+    <ProjectReference Include="..\EcoPets.repositorio\EcoPets.repositorio.csproj" />
+    <ProjectReference Include="..\EcoPets.utilidades\EcoPets.utilidades.csproj" />
+  </ItemGroup>
+
+</Project>

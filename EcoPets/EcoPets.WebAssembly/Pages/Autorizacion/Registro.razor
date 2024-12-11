@@ -1,0 +1,91 @@
+﻿@page "/registrarse"
+@layout LoginLayout
+@inject IUsuarioServicio _usuarioServicio
+@inject NavigationManager _navServicio
+@inject IToastService toastService
+
+<div class="login-container animated slideInDown">
+    <div class="view-header text-center">
+        <img src="images/ecopets.png" alt="EcoPets" width="30%">
+        <h3>Crear Cuenta</h3>
+        <small>Por favor, ingresa tus datos para registrarte.</small>
+    </div>
+
+    <div class="panel panel-filled mt-3">
+        <div class="panel-body">
+            <EditForm Model="modelo" OnValidSubmit="GuardarCambios">
+                <DataAnnotationsValidator />
+
+                <div class="form-group">
+                    <label for="inputName" class="form-label">Nombre Completo</label>
+                    <input class="form-control" id="inputName" type="text" placeholder="Nombre Completo" @bind-value="modelo.Nombre" autocomplete="off" required />
+                    <span class="help-block small">Tu nombre completo</span>
+                    <ValidationMessage For="@(() => modelo.Nombre)" />
+                </div>
+
+                <div class="form-group">
+                    <label for="inputLastName" class="form-label">Apellido</label>
+                    <input class="form-control" id="inputLastName" type="text" placeholder="Apellido" @bind-value="modelo.Apellido" autocomplete="off" required />
+                    <span class="help-block small">Tu apellido</span>
+                    <ValidationMessage For="@(() => modelo.Apellido)" />
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail" class="form-label">Correo Electrónico</label>
+                    <input class="form-control" id="inputEmail" type="email" placeholder="Correo Electrónico" @bind-value="modelo.Correo" autocomplete="off" required />
+                    <span class="help-block small">Tu correo para contacto</span>
+                    <ValidationMessage For="@(() => modelo.Correo)" />
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword" class="form-label">Contraseña</label>
+                    <input class="form-control" id="inputPassword" type="password" placeholder="Contraseña" @bind-value="modelo.Clave" autocomplete="off" required />
+                    <span class="help-block small">Elige una contraseña segura</span>
+                    <ValidationMessage For="@(() => modelo.Clave)" />
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPasswordConfirm" class="form-label">Confirmar Contraseña</label>
+                    <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirmar Contraseña" @bind-value="modelo.ConfirmarClave" autocomplete="off" required />
+                    <span class="help-block small">Repite tu contraseña</span>
+                    <ValidationMessage For="@(() => modelo.ConfirmarClave)" />
+                </div>
+
+                <div class="mt-4 mb-0 text-center">
+                    <button class="btn btn-primary" type="submit">Registrarse</button>
+                    <a class="btn btn-default mt-2" href="/login">Iniciar Sesión</a>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+
+    <div class="back-link mt-3 text-center">
+        <a href="/" class="btn btn-accent">Regresar al Inicio</a>
+    </div>
+</div>
+
+@code {
+    private UsuarioDTO modelo = new UsuarioDTO();
+
+    private async Task GuardarCambios()
+    {
+        if (modelo.Clave != modelo.ConfirmarClave)
+        {
+            toastService.ShowWarning("Las contraseñas no coinciden");
+            return;
+        }
+
+        modelo.Rol = "Cliente"; // Define el rol por defecto
+        var response = await _usuarioServicio.Crear(modelo);
+
+        if (response.EsCorrecto)
+        {
+            toastService.ShowSuccess("Su cuenta ha sido creada");
+            _navServicio.NavigateTo("/login");
+        }
+        else
+        {
+            toastService.ShowError("No se pudo crear su cuenta. Intente más tarde.");
+        }
+    }
+}

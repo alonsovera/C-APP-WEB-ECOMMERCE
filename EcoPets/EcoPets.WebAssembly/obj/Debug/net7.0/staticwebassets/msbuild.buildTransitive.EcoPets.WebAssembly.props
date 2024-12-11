@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\EcoPets.WebAssembly.props" />
+</Project>

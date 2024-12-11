@@ -1,0 +1,68 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #949ba2;
+    background: #ffffff; /* Fondo blanco */
+}
+
+.content {
+    margin-top: 60px;
+    margin-left: 200px;
+    position: relative;
+    padding: 30px;
+    transition: margin-left 0.3s ease-out;
+}
+
+.container-center {
+    max-width: 400px;
+    margin: 10% auto 0;
+    padding: 20px;
+}
+
+.container-center.sm {
+    max-width: 200px;
+}
+
+.container-center.md {
+    max-width: 600px;
+}
+
+.container-center.lg {
+    max-width: 800px;
+}
+
+a {
+    color: #f6a821;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #f8bb52;
+    outline: none;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #3d404c;
+}
+
+label {
+    font-weight: 500;
+}
+
+.help-block {
+    color: #6d757d;
+}
+
+/* Estilo para todos los contenedores con la clase login-container */
+.login-container {
+    max-width: 500px; /* Ajusta el ancho como desees */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10% auto 0; /* Centrado vertical y horizontal */
+}
